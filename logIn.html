@@ -1,0 +1,136 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>log In</title>
+    <link rel="stylesheet" href="globle.css">
+</head>
+
+
+
+<style>
+    body {
+        background-color: rgb(176, 196, 168);
+    }
+
+    form>h1 {
+        text-align: center;
+    }
+
+    form {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        background-color: beige;
+        width: 400px;
+        padding: 30px;
+        margin: 120px 0px 120px 460px;
+        border-radius: 10px;
+    }
+
+    form>input {
+        padding: 12px;
+        font-size: 15px;
+        width: 340px;
+        border-radius: 5px;
+    }
+
+    #submit {
+        background-color: rgb(18, 152, 175);
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 25px;
+        /* border-radius: 5px; */
+    }
+</style>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <form action="">
+        <h1>Login </h1>
+
+        <input type="email" id="email" placeholder="Enter Your Email Id" required><br><br>
+        <input type="password" id="password" maxlength="6" placeholder="Enter Your Password" required><br><br>
+
+        <!-- <p>Forget Password <a href="#">Click Here!</a></p> -->
+
+        <input id="submit" type="submit" placeholder="submit"><br><br>
+
+
+        <div>Don't have an account <a href="signUp.html">signUp</a></div>
+
+    </form>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2024 meesho Clone. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
+<script>
+
+    let loggedIn =  JSON.parse(localStorage.getItem("loggedIn")) || false;
+    //console.log(loggedIn)
+
+    let loginPage = JSON.parse(localStorage.getItem("loginForm")) || [];
+
+
+    document.querySelector("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+
+     let newDAta =   loginPage.filter(ele => ele.email.toLowerCase().includes(email.toLowerCase()) )
+
+     console.log(newDAta)
+
+     if(newDAta.length <=0 ){
+        alert("Don't have an account");
+        window.location.href = "signUp.html";
+     }
+     else{
+        if(newDAta[0].password == password){
+            alert("User logged in Successfully !")
+            localStorage.setItem("loggedIn", JSON.stringify(true))
+            
+            window.location.href = "index.html";
+        }
+        else{
+            alert("Wrong password");
+        }
+     }
+    })
+
+</script>

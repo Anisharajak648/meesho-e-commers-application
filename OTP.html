@@ -1,0 +1,135 @@
+<!-- OTP.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="globle.css">
+
+    <style>
+        body{
+            background-color: rgb(212, 211, 211);
+        }
+
+        #otpForm {
+            background-color: #fff;
+            padding: 23px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 90px 0px 90px 470px;
+            
+        }
+
+        #otpForm>h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            /* font-size: 40px; */
+            padding: 10px;
+        }
+
+
+        #label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 18px;
+            background-color: rgb(240, 239, 239);
+        }
+
+        #submit {
+            background-color: rgb(3, 153, 153);
+            transition: background-color 1s;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #submit:hover {
+            background-color: #970366;
+        }
+
+        span {
+            color: rgb(231, 7, 7);
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <form id="otpForm">
+
+        <h1>OTP Verification!</h1>
+        <label id="label" for="otp">Enter OTP <span>*</span></label>
+        <input type="text" id="otp" maxlength="6" id="fill" placeholder="enter OTP here" required><br><br>
+
+        <input type="submit" value="Verify OTP" id="submit">
+
+    </form> 
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2024 meesho Clone. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
+
+
+<script>
+    let otpForm = document.querySelector('#otpForm');
+
+    otpForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const otp = document.querySelector('#otp').value;
+
+        if (otp === '123456') {
+            alert('Payment done Successfully!!!');
+            window.location.href = "thankyou.html"
+
+        } else {
+            alert('Error: Invalid OTP');
+        }
+    });
+</script>

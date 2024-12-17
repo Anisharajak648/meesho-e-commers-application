@@ -1,0 +1,156 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign Up</title>
+    <link rel="stylesheet" href="globle.css">
+</head>
+
+
+<style>
+    #container>h1 {
+        text-align: center;
+    }
+
+    #container {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        width: 450px;
+        padding: 30px;
+        margin: 30px 0px 30px 450px;
+        border-radius: 10px;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 15px;
+        width: 370px;
+        border-radius: 5px;
+        margin: 5px;
+        margin: 10px;
+    }
+
+    #submit:hover {
+        background-color: rgb(6, 138, 179);
+    }
+
+    #submit {
+        background-color: teal;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 25px;
+        /* border-radius: 5px; */
+    }
+
+    form>div {
+        padding: 5px;
+        font-size: 15px;
+    }
+</style>
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <div id="container">
+        <h1>SignUp</h1>
+
+        <form>
+
+            <input type="text" id="name" placeholder="Enter Your Full Name" required><br>
+            <input type="email" id="email" placeholder="Enter Email" required><br>
+            <input type="password" maxlength="6" id="password" placeholder="Enter Password" required><br>
+            <input type="number" id="mob" placeholder="Enter Your Phone Number"><br>
+            <p>Forget Password <a href="#">Click Here!</a></p>
+
+            <input id="submit" type="submit" placeholder="submit"><br>
+            <div>already have an account <a href="logIn.html">logIn</a></div>
+            <div>Go to home page <a href="index.html">Home</a></div>
+        </form>
+
+
+    </div>
+
+</body>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Help</a></li>
+    </ul>
+    <div class="social-icons">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+    </div>
+    <p>&copy; 2024 meesho Clone. All rights reserved.</p>
+</footer>
+
+
+</html>
+<script>
+
+    let loginPage = JSON.parse(localStorage.getItem("loginForm")) || [];
+    document.querySelector("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let name = document.querySelector("#name").value;
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+        let mob = document.querySelector("#mob").value;
+
+        let obj = {
+            name, email, password, mob
+
+        }
+
+console.log(obj)
+
+
+        let newArr = loginPage.filter((ele) => ele.email.toLowerCase().includes(email.toLowerCase()));
+        //console.log(newArr[0].email)
+        
+            if (newArr.length <= 0 ) {
+                loginPage.push(obj)
+                localStorage.setItem("loginForm", JSON.stringify(loginPage))
+                alert("signUp saccessfully!!");
+                window.location.href =  "logIn.html";
+               
+            }
+            else {
+               
+                alert("Already have an account !")
+
+            }
+        
+
+
+
+
+
+    })
+
+
+</script>

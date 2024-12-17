@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="globle.css">
+    <style>
+        body {
+            background-color: rgb(230, 230, 230);
+        }
+
+        form>h1 {
+            text-align: center;
+            color: rgb(2, 100, 2);
+        }
+
+        form {
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background-color: white;
+            width: 450px;
+            height: 550px;
+            padding: 20px;
+            margin: 20px 0px 20px 450px;
+            border-radius: 10px;
+        }
+
+        form>label {
+            margin: 3px;
+            font-size: 20px;
+
+        }
+
+        form>input {
+            padding: 12px;
+            font-size: 15px;
+            width: 400px;
+            border-radius: 5px;
+            background-color: whitesmoke;
+        }
+
+        #submit {
+            background-color: teal;
+            color: #fff;
+            transition: background-color 1s;
+
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            /* width: 340px; */
+        }
+
+        #submit:hover {
+            background-color: #004369;
+        }
+
+        span {
+            color: rgb(216, 13, 13);
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <form>
+        <h1>Payment!!</h1>
+
+        <label for="cardNumber">Card Number <span>*</span></label><br>
+        <input type="text" id="cardNumber" maxlength="16" placeholder="Enter Your Card Number" required><br><br>
+
+        <label for="cvv">CVV <span>*</span></label><br>
+        <input type="text" id="cvv" maxlength="3" placeholder="Enter Your CVV Number" required><br><br>
+
+        <label for="expiryDate">Expiry Date <span>*</span></label><br>
+        <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required><br><br>
+
+        <label for="name">Account Holder Name<span>*</span></label><br>
+        <input type="text" id="name" required placeholder="Enter Your Account Holder Name"><br><br>
+
+        <input id="submit" type="submit" value="Pay Now">
+
+
+    </form>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2024 meesho Clone. All rights reserved.</p>
+    </footer>
+
+
+</body>
+
+<script>
+    let arr = JSON.parse(localStorage.getItem("otpForm")) || [];
+
+    document.querySelector('form').addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let cardNum = document.querySelector('#cardNumber').value;
+        let cvv = document.querySelector('#cvv').value;
+        let Date = document.querySelector("#expiryDate").value;
+        let name = document.querySelector("#name").value;
+
+        let obj = {
+            cardNum, cvv, Date, name,
+        }
+        arr.push(obj)
+        console.log(arr)
+
+        localStorage.setItem("otpForm", JSON.stringify(arr))
+        window.location.href = 'OTP.html';
+
+
+
+    });
+
+</script>
+
+
+</html>

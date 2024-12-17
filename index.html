@@ -1,0 +1,153 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="globle.css">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <form action="">
+            <input id="search" type="text" placeholder="🔍Search...">
+            <input id="search1" type="submit">
+        </form>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+
+
+    <div id="main"></div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2024 Nykaa Clone. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
+<script>
+    let loggedIn = JSON.parse(localStorage.getItem("loggedIn")) || false;
+    let arr = JSON.parse(localStorage.getItem("productDetails")) || []
+    let bag = [];
+
+    let cartItem = JSON.parse(localStorage.getItem("cartProduct")) || []
+
+    fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((data) => {
+            bag = data;
+            console.log(data)
+            displayData(data)
+        })
+
+
+    document.querySelector("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        let q = document.querySelector("#search").value;
+        let newData = bag.filter(element => {
+            return element.category.toLowerCase().includes(q.toLowerCase())
+        })
+        console.log(newData)
+        displayData(newData);
+    })
+
+
+    function displayData(arr) {
+
+        document.querySelector("#main").innerHTML = "";
+
+        arr.forEach((element, index) => {
+
+            let div1 = document.createElement("div");
+
+
+            let img = document.createElement("img");
+            img.setAttribute("src", element.image);
+            img.addEventListener("click", function (e) {
+                e.preventDefault();
+                localStorage.setItem("productDetails", JSON.stringify(element))
+                window.location.href = "productDetail.html"
+            })
+
+            let title = document.createElement("h3");
+            title.innerText = "Title : " + element.title;
+
+            let category = document.createElement("h4")
+            category.innerText = "Category : " + element.category;
+
+            // let description = document.createElement("p");
+            // description.innerText = element.description;
+
+            let price = document.createElement("h5");
+            price.innerText = "Price : " + element.price;
+
+            // let rating = document.createElement("h3")
+            // rating.innerText = element.rating.rate;
+
+            let btn = document.createElement("button");
+            btn.innerText = "Add to Cart"
+            btn.addEventListener("click", function () {
+
+                if (loggedIn == true) {
+
+                    let item = cartItem.filter((a) => a.id == element.id)
+                    if (item.length <= 0) {
+                        cartItem.push(element);
+                        localStorage.setItem("cartProduct", JSON.stringify(cartItem))
+                        alert("Product added to cart successfully!")
+                    }
+                    else{
+                        alert("Product already in the cart")
+                    }
+
+                }
+                else {
+                    alert("User ID not found. Please log in again.")
+                    window.location.href = "logIn.html"
+                }
+
+
+            })
+
+
+            div1.append(img, title, category, price, btn)
+
+            document.querySelector("#main").append(div1)
+
+        });
+
+    }
+
+
+</script>

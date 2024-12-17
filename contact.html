@@ -1,0 +1,191 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="globle.css">
+    <style>
+        body {
+            background-color: rgb(44, 44, 44);
+        }
+
+        #main {
+            width: 450px;
+            height: 550px;
+            border-radius: 10px;
+            margin: 20px 0px 30px 450px;
+            background-color: rgb(20, 20, 20);
+        }
+
+        #main>#first {
+            height: 100px;
+            background-color: rgb(78, 77, 77);
+        }
+
+        #first>h1 {
+            text-align: center;
+            color: white;
+            padding-top: 30px;
+        }
+
+        .form1 {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .form1>label {
+            color: white;
+            font-size: 17px;
+            padding: 20px;
+            width: 140px;
+            text-align: left;
+            border-radius: 5px;
+        }
+
+        input {
+            padding: 10px;
+            background-color: rgb(20, 20, 20);
+            flex: 1;
+            color: white;
+            border-radius: 5px;
+            font-size: 17px;
+        }
+
+        #submit {
+            text-align: center;
+            padding: 10px;
+            border-radius: 50px;
+            color: white;
+            background-color: rgb(35, 38, 197);
+            cursor: pointer;
+            font-size: 15px;
+            margin: 10px 0px 20px 200px;
+
+        }
+
+        #submit:hover {
+            background-color: rgb(20, 22, 105);
+        }
+
+        #msg {
+            height: 60px;
+            margin-bottom: 15px;
+            background-color: rgb(20, 20, 20);
+            color: white;
+            width: 250px;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 17px;
+        }
+        span{
+            color: rgb(201, 8, 8);
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">meesho</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AddtoCart.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <ul>
+            <li><a href="AddtoCart.html">🛒</a></li>
+            <li><a href="logIn.html">Login</a></li>
+        </ul>
+
+    </nav>
+
+
+    <div id="main">
+
+        <div id="first">
+            <h1>Contact Us</h1>
+        </div>
+
+        <div id="second">
+            <form>
+                <div class="form1">
+                    <label for="">Name <span>*</span></label>
+                    <input type="text" id="name" placeholder="name" required><br><br>
+                </div>
+                <div class="form1">
+                    <label for="">E-mail <span>*</span></label>
+                    <input type="email" id="email" placeholder="email" required><br><br>
+                </div>
+                <div class="form1">
+                    <label for="">Contact Number <span>*</span></label>
+                    <input type="number" id="numb" placeholder="number" required><br><br>
+                </div>
+                <div class="form1">
+                    <label for="">Website <span >*</span></label>
+                    <input type="text" id="web" placeholder="Website" required><br><br>
+                </div>
+                <div class="form1">
+                    <label for="">Massage <span >*</span></label>
+                    <!-- <input id="msg" type="email" id="email" name="email"><br><br><br><br> -->
+                    <textarea id="msg" placeholder="message" rows="5" required></textarea><br><br>
+                </div>
+
+                <input id="submit" type="submit">
+            </form>
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2024 meesho Clone. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
+
+
+<script>
+
+    let arr = JSON.parse(localStorage.getItem("contact")) || [];
+    document.querySelector("form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let name = document.querySelector("#name").value;
+        let email = document.querySelector("#email").value;
+        let numb = document.querySelector("#numb").value;
+        let web = document.querySelector("#web").value;
+        let msg = document.querySelector("#msg").value;
+
+        let obj = {
+            name, email, numb, web, msg,
+        }
+
+        arr.push(obj)
+        console.log(arr);
+        localStorage.setItem("contact", JSON.stringify(arr))
+        window.location.href = "index.html"
+    })
+
+
+
+</script>
